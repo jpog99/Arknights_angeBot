@@ -9,6 +9,7 @@
     "jimp": "^0.2.28",
     "libsodium-wrappers": "latest",
     "opusscript": "latest",
+    "valid-url": "^1.0.9",
     "ytdl-core": "latest"
   },
   "is-music-bot": true
