@@ -77,10 +77,10 @@ module.exports = {
 				dataType = "Image URL";
 				break;
 			case 17:
-				dataType = "Number";
+				dataType = "List of Roles";
 				break;
 			case 18:
-				dataType = "List of Roles";
+				dataType = "Number";
 				break;
 			case 19:
 				dataType = "Voice Channel";

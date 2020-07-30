@@ -1,11 +1,11 @@
 /******************************************************
  * Discord Bot Maker Bot
- * Version 1.6.0
+ * Version 1.6.8
  * Robert Borghese
  ******************************************************/
 
 const DBM = {};
-DBM.version = "1.6.0";
+DBM.version = "1.6.8";
 
 const DiscordJS = DBM.DiscordJS = require("discord.js");
 
@@ -38,8 +38,12 @@ Bot.init = function() {
 };
 
 Bot.initBot = function() {
-	this.bot = new DiscordJS.Client();
+	this.bot = new DiscordJS.Client({ ws: { intents: this.intents() }});
 };
+
+Bot.intents = function() {
+	return DiscordJS.Intents.NON_PRIVILEGED;
+}
 
 Bot.setupBot = function() {
 	this.bot.on("raw", this.onRawData);
@@ -1139,17 +1143,6 @@ Files.dataFiles = [
 
 Files.startBot = function() {
 	const path = require("path");
-	/*
-	const fs = require("fs");
-	if(process.env['IsDiscordBotMakerTest'] === 'true') {
-		Actions.location = process.env['ActionsDirectory'];
-		this.initBotTest();
-	} else if(process.argv.length >= 3 && fs.existsSync(process.argv[2])) {
-		Actions.location = process.argv[2];
-	} else {
-		Actions.location = path.join(__dirname, 'actions');
-	}
-	*/
 	Actions.actionsLocation = path.join(__dirname, "actions");
 	Actions.eventsLocation = path.join(__dirname, "events");
 	Actions.extensionsLocation = path.join(__dirname, "extensions");
@@ -1164,22 +1157,6 @@ Files.startBot = function() {
 Files.verifyDirectory = function(dir) {
 	return typeof dir === "string" && require("fs").existsSync(dir);
 };
-
-/*
-Files.initBotTest = function(content) {
-	this._console_log = console.log;
-	console.log = function() {
-		process.send(String(arguments[0]));
-		Files._console_log.apply(this, arguments);
-	};
-
-	this._console_error = console.error;
-	console.error = function() {
-		process.send(String(arguments[0]));
-		Files._console_error.apply(this, arguments);
-	};
-};
-*/
 
 Files.readData = function(callback) {
 	const fs = require("fs");

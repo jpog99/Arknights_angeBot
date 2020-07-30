@@ -109,13 +109,13 @@ module.exports = {
 
 	action: function(cache) {
 		const data = cache.actions[cache.index];
-		const storage = parseInt(data.channel);
-		const varName = this.evalMessage(data.varName, cache);
-		const channel = this.getChannel(storage, varName, cache);
+    const storage = parseInt(data.member);
+    const varName = this.evalMessage(data.varName, cache);
+    const member = this.getMember(storage, varName, cache);
 
-		const storage2 = parseInt(data.member);
-		const varName2 = this.evalMessage(data.varName2, cache);
-		const member = this.getMember(storage2, varName2, cache);
+    const storage2 = parseInt(data.channel);
+    const varName2 = this.evalMessage(data.varName2, cache);
+    const channel = this.getVoiceChannel(storage2, varName2, cache);
 		const reason = this.evalMessage(data.reason, cache);
 
 		if(Array.isArray(member)) {

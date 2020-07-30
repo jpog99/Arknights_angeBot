@@ -137,17 +137,19 @@ Name:<br>
 			roleData.color = this.evalMessage(data.color, cache);
 		}
 		if(data.position) {
-			roleData.position = parseInt(data.position);
+			roleData.position = parseInt(this.evalMessage(data.position, cache));
 		}
 		roleData.hoist = JSON.parse(data.hoist);
 		roleData.mentionable = JSON.parse(data.mentionable);
 		if(this.dest(server, "roles", "create")) {
 			const storage = parseInt(data.storage);
-			server.roles.create({ data: roleData, reason }).then(function(role) {
-				const varName = this.evalMessage(data.varName, cache);
-				this.storeValue(role, storage, varName, cache);
-				this.callNextAction(cache);
-			}.bind(this)).catch(this.displayError.bind(this, data, cache));
+			server.roles.create({ data: roleData, reason })
+				.then((role) => {
+					const varName = this.evalMessage(data.varName, cache);
+					this.storeValue(role, storage, varName, cache);
+					this.callNextAction(cache);
+				})
+				.catch(this.displayError.bind(this, data, cache));
 		} else {
 			this.callNextAction(cache);
 		}

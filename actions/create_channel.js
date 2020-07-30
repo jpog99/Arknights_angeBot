@@ -129,7 +129,7 @@ Category ID:<br>
 				channelData.topic = this.evalMessage(data.topic, cache);
 			}
 			if (data.position) {
-				channelData.position = parseInt(data.position);
+				channelData.position = parseInt(this.evalMessage(data.position, cache));
 			}
 			if (data.categoryID) {
 				channelData.parent = this.evalMessage(data.categoryID, cache);

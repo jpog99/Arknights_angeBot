@@ -20,7 +20,7 @@ module.exports = {
 	//---------------------------------------------------------------------
 	subtitle: function(data) {
 		const message = ["Command Message", "Temp Variable", "Server Variable", "Global Variable"];
-		const info = ["Message Object", "Message ID", "Message Text", "Message Author", "Message Channel", "Message Timestamp", "Message is Pinned", "Message is TTS", "Message Edited At", "Message Edits History", "", "", "Messages Different Reactions Count", "Mentioned Users List", "Mentioned Users Count", "Message URL", "Message Creation Date", "Message Length", "Message Attachments Count", "Message Guild", "Message Type", "Message Webhook ID", "Message Embed Object"];
+		const info = ["Message Object", "Message ID", "Message Text", "Message Author", "Message Channel", "Message Timestamp", "Message is Pinned", "Message is TTS", "Message Attachments List", "Message Edits", "", "", "Messages Reactions Count", "Mentioned Users List", "Mentioned Users Count", "Message URL", "Message Creation Date", "Message Content Length", "Message Attachments Count", "Message Guild", "Message Type", "Message Webhook ID", "Message Embed Object"];
 		return `${message[parseInt(data.message)]} - ${info[parseInt(data.info)]}`;
 	},
 
@@ -58,7 +58,9 @@ module.exports = {
 				dataType = "Boolean";
 				break;
 			case 8:
+        dataType = "Date";
 			case 9:
+        dataType = "Messages List";
 			case 12:
 				dataType = "Number";
 				break;
@@ -145,7 +147,7 @@ module.exports = {
 			<option value="6">Message Is Pinned?</option>
       <option value="7">Message Is TTS?</option>
       <option value="8">Message Attachments List</option>
-			<option value="9">Message Embed</option>
+			<option value="9">Message Edits</option>
 			<option value="12">Messages Reactions Count</option>
 			<option value="13">Messages Mentioned Users List</option>
 			<option value="14">Messages Mentioned Users Count</option>
@@ -231,7 +233,7 @@ module.exports = {
 				result = msg.tts;
 				break;
 			case 8:
-				result = msg.editedAt;
+				result = msg.attachments.array();
 				break;
 			case 9:
 				result = msg.edits;

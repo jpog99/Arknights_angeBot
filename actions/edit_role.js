@@ -129,7 +129,7 @@ module.exports = {
 			roleData.color = this.evalMessage(data.color, cache);
 		}
 		if(data.position) {
-			roleData.position = parseInt(data.position);
+			roleData.position = parseInt(this.evalMessage(data.position, cache));
 		}
 		if(data.hoist !== "none") {
 			roleData.hoist = JSON.parse(data.hoist);
