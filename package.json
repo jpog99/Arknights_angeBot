@@ -13,6 +13,7 @@
     "jimp": "^0.2.28",
     "jsonpath-plus": "^4.0.0",
     "libsodium-wrappers": "latest",
+    "nekos.life": "^2.0.7",
     "opusscript": "latest",
     "valid-url": "^1.0.9",
     "xml-js": "^1.6.11",
